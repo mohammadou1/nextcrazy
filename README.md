@@ -1,5 +1,7 @@
 # NextCrazy Boilerplate
 
+[NextCrazy is really crazy](https://ibb.co/HN0Q7z3)
+
 A boilerplate that gathers few things you may find helpful in any way,
 please feel free to suggest changes, fixes or anything you find suitable
 
