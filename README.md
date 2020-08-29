@@ -1,6 +1,6 @@
 # NextCrazy Boilerplate
 
-[NextCrazy is really crazy](https://ibb.co/HN0Q7z3)
+![NextCrazy is really crazy](https://github.com/mohammadou1/next-boilerplate/blob/master/public/images/nextcrazy.png)
 
 A boilerplate that gathers few things you may find helpful in any way,
 please feel free to suggest changes, fixes or anything you find suitable
