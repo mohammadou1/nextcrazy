@@ -1,0 +1,14 @@
+{
+   "rules": {
+      "no-console": {
+         "severity": "error",
+         "options": ["log", "trace", "time", "timeEnd"]
+      }
+   },
+   "jsRules": {
+      "no-console": {
+         "severity": "error",
+         "options": ["log", "trace", "time", "timeEnd"]
+      }
+   }
+}

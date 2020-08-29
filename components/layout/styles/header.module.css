@@ -1,0 +1,15 @@
+.navlink {
+  @apply mx-2 px-3 py-2 rounded-md text-sm font-medium leading-5 transition duration-150 ease-in-out text-gray-300;
+  &__mobile {
+    @apply ml-0 block mt-1;
+  }
+  &:hover {
+    @apply text-white bg-gray-700;
+  }
+  &:focus {
+    @apply outline-none text-white bg-gray-700;
+  }
+  &__active {
+    @apply bg-gray-900;
+  }
+}

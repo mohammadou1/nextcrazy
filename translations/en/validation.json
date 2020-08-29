@@ -1,0 +1,4 @@
+{
+  "not_email": "Value must be an email",
+  "required": "Field is required"
+}
