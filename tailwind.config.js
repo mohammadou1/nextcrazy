@@ -2,7 +2,12 @@ module.exports = {
    future: {
       removeDeprecatedGapUtilities: true,
    },
-   purge: ['./components/**/*.{js,ts,jsx,tsx}', './pages/**/*.{js,ts,jsx,tsx}'],
+   purge: {
+      content: ['./components/**/*.{js,ts,jsx,tsx}', './pages/**/*.{js,ts,jsx,tsx}'],
+      options: {
+         whitelist: ['dir', 'rtl', 'ltr'],
+      },
+   },
    theme: {},
    variants: {
       float: ['responsive', 'direction'],
