@@ -1,14 +1,13 @@
 import { createContext } from 'react';
 import { AuthProviderProps } from './provider';
 
-export type RedirectConfig = {
+export type ComeBackConfig = {
    /** Where should the user be redirected to ? (default is /[lang]/login).*/
    redirectTo?: { href: string; as: string };
-};
-export type ComeBackConfig = {
    /** Where should the user be redirected to afer login success ? (default is /[lang]/login).*/
    comebackTo?: { href: string; as: string };
 };
+
 export type AuthContextProps = {
    /**
     * @description this will only make the user logged in by storing the token in the cookies
@@ -25,7 +24,7 @@ export type AuthContextProps = {
    /**
     * @description useful for buttons that require auth, it will take the user to login page and redirect him back to provided path on success
     */
-   comebackLogin: (config?: RedirectConfig & ComeBackConfig) => any;
+   comebackLogin: (config?: ComeBackConfig) => any;
    settings: AuthProviderProps;
    authenticated: boolean;
    token: string;

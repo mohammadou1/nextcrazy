@@ -1,6 +1,14 @@
 {
-  "name": "next-boilerplate",
+  "name": "nextcrazy",
   "version": "0.1.0",
+  "keywords": [
+    "nextcrazy",
+    "nextjs",
+    "boilerplate",
+    "nextjs starter",
+    "nextjs tailwind starter"
+  ],
+  "description": "NextJS starter with some features that you may find helpful in some way!",
   "scripts": {
     "dev": "next",
     "production": "env-cmd -f .env.production next build & env-cmd -f .env.production next start",

@@ -2,7 +2,7 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import { getLanguagesPaths } from '~/utils/translate';
 import { withRedirectOnAuth } from '~/auth';
 import { Translate } from '~/i18n';
-import useAuth from '../../auth/useAuth';
+import useAuth from '~/auth/useAuth';
 
 const LoginPage = () => {
    const { login } = useAuth();

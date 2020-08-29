@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from 'react';
 import cookie from 'js-cookie';
 import { useRouter } from 'next/router';
-import AuthContext, { RedirectConfig, ComeBackConfig } from './context';
+import AuthContext, { ComeBackConfig } from './context';
 import { useTranslate } from '~/i18n';
 import { languages } from '~/translation.json';
 
@@ -111,7 +111,7 @@ const AuthProvider: FC<AuthProviderProps> = ({ children, ...props }) => {
       if (data.authenticated) setData({ ...data, user });
    };
 
-   const comebackLogin = (config?: RedirectConfig & ComeBackConfig) => {
+   const comebackLogin = (config?: ComeBackConfig) => {
       const href = `${config?.comebackTo?.href || router.pathname}`;
 
       const hrefAs = `${config?.comebackTo?.as || router.asPath}`;

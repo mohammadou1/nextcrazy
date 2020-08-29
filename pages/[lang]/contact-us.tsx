@@ -2,7 +2,7 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import { getLanguagesPaths } from '~/utils/translate';
 import { useForm } from 'react-hook-form';
 import validator from 'validator';
-import useTranslate from '../../i18n/useTranslate';
+import useTranslate from '~/i18n/useTranslate';
 import { Fragment } from 'react';
 import { NextSeo } from 'next-seo';
 const ContactPage = () => {
