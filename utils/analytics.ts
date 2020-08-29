@@ -1,0 +1,39 @@
+import TagManager from 'react-gtm-module';
+
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                This file should have all analaytics configs                */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/* ------ Make sure to add their keys inside enviroment variables ------ */
+
+export const initGTM = () => {
+   if (process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER) {
+      TagManager.initialize({
+         gtmId: process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER,
+      });
+   }
+};
+
+export const prettyComment = () => {
+   document.body.append(
+      document.createComment(`
+   //..................................................................................................................................
+   //.UUUU...UUUU.UXXXX..XXXXX.XBBBBBBBBB...BEEEEEEEEEE.ERRRRRRRRR...TTTTTTTTTTT..... LLL..........AAAAA.....BBBBBBBBBB....SSSSSSS.....
+   //.UUUU...UUUU..XXXX..XXXX..XBBBBBBBBBB..BEEEEEEEEEE.ERRRRRRRRRR..TTTTTTTTTTT..... LLL..........AAAAA.....BBBBBBBBBBB..SSSSSSSSS....
+   //.UUUU...UUUU..XXXXXXXXXX..XBBBBBBBBBB..BEEEEEEEEEE.ERRRRRRRRRR..TTTTTTTTTTT..... LLL.........AAAAAA.....BBBBBBBBBBB..SSSSSSSSSS...
+   //.UUUU...UUUU...XXXXXXXX...XBBB...BBBB..BEEE........ERRR...RRRRR....TTTT......... LLL.........AAAAAAA....BBBB...BBBB.BSSSS..SSSS...
+   //.UUUU...UUUU....XXXXXX....XBBB...BBBB..BEEE........ERRR...RRRRR....TTTT......... LLL........AAAAAAAA....BBBB...BBBB.BSSSS.........
+   //.UUUU...UUUU....XXXXXX....XBBBBBBBBBB..BEEEEEEEEE..ERRRRRRRRRR.....TTTT......... LLL........AAAAAAAA....BBBBBBBBBBB..SSSSSSS......
+   //.UUUU...UUUU....XXXXX.....XBBBBBBBBB...BEEEEEEEEE..ERRRRRRRRRR.....TTTT......... LLL........AAAA.AAAA...BBBBBBBBBB....SSSSSSSSS...
+   //.UUUU...UUUU....XXXXXX....XBBBBBBBBBB..BEEEEEEEEE..ERRRRRRR........TTTT......... LLL.......AAAAAAAAAA...BBBBBBBBBBB.....SSSSSSS...
+   //.UUUU...UUUU...XXXXXXXX...XBBB....BBBB.BEEE........ERRR.RRRR.......TTTT......... LLL.......AAAAAAAAAAA..BBBB....BBBB.......SSSSS..
+   //.UUUU...UUUU...XXXXXXXX...XBBB....BBBB.BEEE........ERRR..RRRR......TTTT......... LLL.......AAAAAAAAAAA..BBBB....BBBBBSSS....SSSS..
+   //.UUUUUUUUUUU..XXXX.XXXXX..XBBBBBBBBBBB.BEEEEEEEEEE.ERRR..RRRRR.....TTTT......... LLLLLLLLLLAAA....AAAA..BBBBBBBBBBBBBSSSSSSSSSSS..
+   //..UUUUUUUUU..UXXXX..XXXXX.XBBBBBBBBBB..BEEEEEEEEEE.ERRR...RRRRR....TTTT......... LLLLLLLLLLAAA.....AAAA.BBBBBBBBBBB..SSSSSSSSSS...
+   //...UUUUUUU...UXXX....XXXX.XBBBBBBBBB...BEEEEEEEEEE.ERRR....RRRR....TTTT......... LLLLLLLLLLAAA.....AAAA.BBBBBBBBBB....SSSSSSSS....
+   //..................................................................................................................................
+   `)
+   );
+};

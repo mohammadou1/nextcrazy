@@ -1,0 +1,27 @@
+// stylelint-disable declaration-no-important
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+	@include media-breakpoint-up($breakpoint) {
+		$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+		.float#{$infix}-left {
+			[dir='ltr'] & {
+				float: left !important;
+			}
+			[dir='rtl'] & {
+				float: right !important;
+			}
+		}
+		.float#{$infix}-right {
+			[dir='ltr'] & {
+				float: right !important;
+			}
+			[dir='rtl'] & {
+				float: left !important;
+			}
+		}
+		.float#{$infix}-none {
+			float: none !important;
+		}
+	}
+}

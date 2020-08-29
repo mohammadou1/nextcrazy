@@ -1,0 +1,99 @@
+@mixin caret-down() {
+	border-top: $caret-width solid;
+	[dir='ltr'] & {
+		border-right: $caret-width solid transparent;
+		border-left: $caret-width solid transparent;
+	}
+	[dir='rtl'] & {
+		border-left: $caret-width solid transparent;
+		border-right: $caret-width solid transparent;
+	}
+	border-bottom: 0;
+}
+
+@mixin caret-up() {
+	border-top: 0;
+	border-bottom: $caret-width solid;
+	[dir='ltr'] & {
+		border-right: $caret-width solid transparent;
+		border-left: $caret-width solid transparent;
+	}
+	[dir='rtl'] & {
+		border-left: $caret-width solid transparent;
+		border-right: $caret-width solid transparent;
+	}
+}
+
+@mixin caret-right() {
+	border-top: $caret-width solid transparent;
+	[dir='ltr'] & {
+		border-right: 0;
+		border-left: $caret-width solid;
+	}
+	[dir='rtl'] & {
+		border-left: 0;
+		border-right: $caret-width solid;
+	}
+	border-bottom: $caret-width solid transparent;
+}
+
+@mixin caret-left() {
+	border-top: $caret-width solid transparent;
+	border-bottom: $caret-width solid transparent;
+	[dir='rtl'] & {
+		border-right: 0;
+		border-left: $caret-width solid;
+	}
+	[dir='ltr'] & {
+		border-left: 0;
+		border-right: $caret-width solid;
+	}
+}
+
+@mixin caret($direction: down) {
+	@if $enable-caret {
+		&::after {
+			display: inline-block;
+			[dir='ltr'] & {
+				margin-left: $caret-spacing;
+			}
+			[dir='rtl'] & {
+				margin-right: $caret-spacing;
+			}
+			vertical-align: $caret-vertical-align;
+			content: '';
+			@if $direction == down {
+				@include caret-down();
+			} @else if $direction == up {
+				@include caret-up();
+			} @else if $direction == right {
+				@include caret-right();
+			} @else {
+				@include caret-left();
+			}
+		}
+
+		@if $direction == left {
+			&::after {
+				display: none;
+			}
+
+			&::before {
+				display: inline-block;
+				margin-right: $caret-spacing;
+				vertical-align: $caret-vertical-align;
+				content: '';
+				@include caret-left();
+			}
+		}
+
+		&:empty::after {
+			[dir='ltr'] & {
+				margin-left: 0;
+			}
+			[dir='rtl'] & {
+				margin-right: 0;
+			}
+		}
+	}
+}
