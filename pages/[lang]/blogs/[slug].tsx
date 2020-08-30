@@ -19,7 +19,7 @@ const NotFoundPage = ({ blog }: any) => {
 export const getStaticPaths: GetStaticPaths = async () => {
    const { data } = await Axios.get('http://jsonplaceholder.typicode.com/posts?_start=0&_limit=15');
    return {
-      paths: getLanguagesPaths([{ key: 'slug', values: data.map((item: any) => item.id + '') }]),
+      paths: getLanguagesPaths(data.map((item: any) => ({ slug: item.id }))),
       fallback: false,
    };
 };

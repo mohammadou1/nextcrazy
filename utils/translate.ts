@@ -2,8 +2,7 @@ import { languages, defaultLanguage } from '~/translation.json';
 import { Router } from 'next/router';
 
 type Payload = {
-   key: string;
-   values: string[];
+   [key: string]: string;
 };
 
 /** -------------------------------------------------------------------------- **/
@@ -24,20 +23,34 @@ export function getLanguagesPaths(payloads?: Payload[]) {
    const paths: any[] = [];
 
    /* -------------------------- looping all languages ------------------------- */
-   languages.forEach(lang =>
-      /* ----------------------- looping all passed payloads ---------------------- */
-      payloads.forEach(p =>
-         /* -------------- looping each value passed by a single payload ------------- */
-         p.values.forEach(value =>
-            paths.push({
-               params: {
-                  [p.key]: value,
-                  lang,
-               },
-            })
-         )
+   /* ---------------------- Then injecting passed params ---------------------- */
+
+   payloads.forEach(payload =>
+      languages.forEach(lang =>
+         paths.push({
+            params: {
+               lang,
+               ...payload,
+            },
+         })
       )
    );
+
+   return paths;
+}
+
+/* ------------------------ Without language payloads ----------------------- */
+export function getPaths(payloads: Payload[]) {
+   const paths: any[] = [];
+
+   payloads.forEach(payload =>
+      paths.push({
+         params: {
+            ...payload,
+         },
+      })
+   );
+
    return paths;
 }
 
