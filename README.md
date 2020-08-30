@@ -7,6 +7,13 @@ please feel free to suggest changes, fixes or anything you find suitable
 
 > So far it only supports tailwind, but supporting bootstrap is coming!
 
+There is a nice expermintal cli for this boiler as well :)
+
+```
+npm i -g nextcrazy-cli
+```
+
+read more about it at [NextCrazy Cli](https://github.com/mohammadou1/nextcrazy-cli) or just type ```nextcrazy``` and check it!
 ### Features
 
 -  NextJS 9.5
