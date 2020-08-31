@@ -29,8 +29,8 @@ export function getLanguagesPaths(payloads?: Payload[]) {
       languages.forEach(lang =>
          paths.push({
             params: {
-               lang,
                ...payload,
+               lang,
             },
          })
       )
