@@ -1,4 +1,7 @@
 {
-  "defaultLanguage": "en",
-  "languages": ["ar", "en"]
+   "defaultLanguage": "en",
+   "languages": {
+      "ar": "rtl",
+      "en": "ltr"
+   }
 }

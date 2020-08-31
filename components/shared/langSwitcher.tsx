@@ -1,21 +1,20 @@
 import { useRouter } from 'next/router';
 import { languages } from '~/translation.json';
 import Link from 'next/link';
-import translations from '~/translations';
 interface NavLinkProps extends React.HTMLProps<HTMLAnchorElement> {
    className?: string;
    text: string | React.ReactNode;
 }
 
 const LangSwitcher: React.FC<NavLinkProps> = ({ text, href, ...rest }) => {
-   // Just finding the lang path inside the current url to replace it with the requested language
-   // This will ensure that the user maintains his page on language switching
    const router = useRouter();
-   const regex = new RegExp(`^/(${languages.join('|')})`);
+   const regex = new RegExp(`^/(${Object.keys(languages).join('|')})`);
    const hrefAs = `${router.asPath.replace(regex, `${href}`)}`;
    const pathname = router.pathname;
    const lang = href?.replace('/', '') + '';
-   const dir = translations[lang].direction;
+
+   const langs = languages as Record<string, string>;
+   const dir = langs[lang];
 
    const linkHandler = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
       e.preventDefault();

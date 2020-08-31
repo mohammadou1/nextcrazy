@@ -14,7 +14,6 @@ export interface TranslateComponentProps extends TranslateProps {
 const Translate: React.FC<TranslateComponentProps> = ({
    id,
    fallback,
-   specificLang,
    wrapperComponent,
    values,
 }) => {
@@ -22,7 +21,6 @@ const Translate: React.FC<TranslateComponentProps> = ({
    const message = translate({
       id,
       fallback,
-      specificLang,
       values,
    });
    const Wrapper = wrapperComponent;

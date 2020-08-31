@@ -1,24 +1,13 @@
 import ar from './ar';
 import en from './en';
 
-type Translations = {
-   [key: string]: {
-      messages: {
-         [key: string]: Record<string, unknown>;
-      };
-      direction: 'ltr' | 'rtl';
-   };
+export type Translations = {
+   [key: string]: Record<string, unknown>;
 };
 
 const translations: Translations = {
-   ar: {
-      messages: ar,
-      direction: 'rtl',
-   },
-   en: {
-      messages: en,
-      direction: 'ltr',
-   },
+   ar,
+   en,
 };
 
 export default translations;

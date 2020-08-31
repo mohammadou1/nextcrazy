@@ -1,6 +1,5 @@
 import Document, { Head, Main, NextScript, Html } from 'next/document';
-import translations from '~/translations';
-import { defaultLanguage } from '~/translation.json';
+import { defaultLanguage, languages } from '~/translation.json';
 
 /* -------------------------------------------------------------------------- */
 /*                                  DOCUMENT                                  */
@@ -9,9 +8,11 @@ import { defaultLanguage } from '~/translation.json';
 export default class NextDocument extends Document {
    render() {
       /* -------- Just getting direction and language inside html elements -------- */
+
+      const langs = languages as Record<string, string>;
       const props = this.props.__NEXT_DATA__;
       const lang = props?.query?.lang || defaultLanguage;
-      const direction = translations[lang + '']?.direction || 'ltr';
+      const direction = langs[lang + ''] || 'ltr';
       return (
          <Html lang={lang + ''} dir={direction}>
             <Head>

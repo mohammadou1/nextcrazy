@@ -27,8 +27,9 @@ const App = ({ Component, pageProps, router }: AppProps) => {
 
    /* ---------------------- Application current language ---------------------- */
    const lang = getLang(router);
+   const translations = require(`~/translations/${lang}`).default;
    return (
-      <TranslationProvider lang={lang}>
+      <TranslationProvider lang={lang} translations={translations}>
          <DefaultSeo
             title="NextJS Starter"
             description="The best nextjs starter boiler"

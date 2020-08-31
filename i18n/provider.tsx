@@ -1,23 +1,20 @@
 import { FC, useEffect } from 'react';
 import TranslationContext, { TranslateProps } from './context';
-import translations from '~/translations';
 import cookie from 'js-cookie';
-import { parseMessage } from './_helpers';
+import { Translations } from '~/translations';
 type LocaleProviderProps = {
    lang: string;
+   translations: Translations;
 };
 
 /* -------------------------------------------------------------------------- */
 /*                           TRANSLATING IS EASY :(                           */
 /* -------------------------------------------------------------------------- */
 
-const TranslationProvider: FC<LocaleProviderProps> = ({ children, lang }) => {
-   function translate({ id, fallback, specificLang, values }: TranslateProps) {
+const TranslationProvider: FC<LocaleProviderProps> = ({ children, lang, translations }) => {
+   function translate({ id, fallback }: TranslateProps) {
       const keys = id?.split(':');
-      let messages: any;
-
-      if (specificLang) messages = translations[specificLang]?.messages;
-      else messages = translations[lang]?.messages;
+      const messages = translations;
 
       const translatedMessage = messages?.[keys?.[0]]?.[keys?.[1]];
       if (!translatedMessage && fallback) {
@@ -29,7 +26,7 @@ const TranslationProvider: FC<LocaleProviderProps> = ({ children, lang }) => {
          return `Missing translation for '${id}'`;
       }
 
-      return parseMessage(translatedMessage, values);
+      return translatedMessage;
    }
 
    useEffect(() => {
