@@ -6,9 +6,12 @@
     "nextjs",
     "boilerplate",
     "nextjs starter",
-    "nextjs tailwind starter"
+    "nextjs tailwind starter",
+    "nextjs boilerplate",
+    "nextjs-boilerplate",
+    "next.js boilerplate"
   ],
-  "description": "NextJS starter with some features that you may find helpful in some way!",
+  "description": "A Next.js boilerplate with typescript, multilanguages, authentication, tailwind and a CLI",
   "scripts": {
     "dev": "next",
     "production": "env-cmd -f .env.production next build & env-cmd -f .env.production next start",

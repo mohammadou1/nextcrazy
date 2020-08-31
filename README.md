@@ -84,7 +84,7 @@ useEffect(() => {
 return authenticated ? <div>{user && <div>{JSON.stringify(user)}</div>}</div> : 'Not authenticated';
 ```
 
-Other than login and login, there is a tricky one called "comebackLogin",
+Other than login and logout, there is a tricky one called "comebackLogin",
 useful if clicks on an action that requires a logged in state (checkout for example)
 if he successfully logs in, he will be redirected back to the desired location (default is the current one)
 
@@ -102,7 +102,7 @@ const checkoutHandler = () => {
 return <button onClick={checkoutHandler}>checkout</button>;
 ```
 
-also we can tell the redirect the user to another page upon login with the same action
+also we can redirect the user to another page upon login with the same action
 
 ```javascript
 import useAuth from '~/auth/useAuth';
@@ -142,7 +142,7 @@ export default withAuth(ProfilePage);
 ```
 
 And you can pass an optional object with "comeback:true" to redirect back the user to this specific page after login,
-it will override the the provider default paths for this specific request
+it will override the provider default paths for this specific request
 
 ```javascript
 import { withAuth } from '~/auth/useAuth';
