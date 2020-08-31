@@ -1,10 +1,11 @@
 import { FC, useEffect } from 'react';
 import TranslationContext, { TranslateProps } from './context';
 import cookie from 'js-cookie';
-import { Translations } from '~/translations';
 type LocaleProviderProps = {
    lang: string;
-   translations: Translations;
+   translations: {
+      [key: string]: Record<string, unknown>;
+   };
 };
 
 /* -------------------------------------------------------------------------- */
