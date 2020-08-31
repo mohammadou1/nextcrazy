@@ -2,6 +2,7 @@ import { FC, useEffect } from 'react';
 import TranslationContext, { TranslateProps } from './context';
 import translations from '~/translations';
 import cookie from 'js-cookie';
+import { parseMessage } from './_helpers';
 type LocaleProviderProps = {
    lang: string;
 };
@@ -11,7 +12,7 @@ type LocaleProviderProps = {
 /* -------------------------------------------------------------------------- */
 
 const TranslationProvider: FC<LocaleProviderProps> = ({ children, lang }) => {
-   function translate({ id, fallback, specificLang }: TranslateProps) {
+   function translate({ id, fallback, specificLang, values }: TranslateProps) {
       const keys = id?.split(':');
       let messages: any;
 
@@ -28,7 +29,7 @@ const TranslationProvider: FC<LocaleProviderProps> = ({ children, lang }) => {
          return `Missing translation for '${id}'`;
       }
 
-      return translatedMessage;
+      return parseMessage(translatedMessage, values);
    }
 
    useEffect(() => {

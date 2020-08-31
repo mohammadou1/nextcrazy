@@ -16,12 +16,14 @@ const Translate: React.FC<TranslateComponentProps> = ({
    fallback,
    specificLang,
    wrapperComponent,
+   values,
 }) => {
    const { translate } = useTranslate();
    const message = translate({
       id,
       fallback,
       specificLang,
+      values,
    });
    const Wrapper = wrapperComponent;
    if (Wrapper) {

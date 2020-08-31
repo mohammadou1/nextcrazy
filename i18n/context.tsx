@@ -7,6 +7,7 @@ export type TranslateProps = {
    specificLang?: string;
    /** if key wasn't found, this will be used instead */
    fallback?: string;
+   values?: Record<string, string>;
 };
 
 const TranslationContext = createContext({
