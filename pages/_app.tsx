@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import { AuthProvider } from '~/auth';
 import { TranslationProvider } from '~/i18n';
 import { DefaultSeo } from 'next-seo';
+import { languages } from '~/translation.json';
+
 import '../css/tailwind.css';
 import '../css/web.css';
 /* -------------------------------------------------------------------------- */
@@ -27,7 +29,18 @@ const App = ({ Component, pageProps, router }: AppProps) => {
 
    /* ---------------------- Application current language ---------------------- */
    const lang = getLang(router);
+
+   // Manipulating html element for lang and dir attributes
+   useEffect(() => {
+      const langs = languages as Record<string, string>;
+      const dir = langs[lang];
+      document.documentElement.lang = lang;
+      document.documentElement.dir = dir;
+      document.body.dir = dir;
+   }, [lang]);
+
    const translations = require(`~/translations/${lang}`).default;
+
    return (
       <TranslationProvider lang={lang} translations={translations}>
          <DefaultSeo

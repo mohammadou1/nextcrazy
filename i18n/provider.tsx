@@ -1,10 +1,11 @@
 import { FC, useEffect } from 'react';
 import TranslationContext, { TranslateProps } from './context';
 import cookie from 'js-cookie';
+import { parseMessage } from './_helpers';
 type LocaleProviderProps = {
    lang: string;
    translations: {
-      [key: string]: Record<string, unknown>;
+      [key: string]: Record<string, string>;
    };
 };
 
@@ -13,7 +14,7 @@ type LocaleProviderProps = {
 /* -------------------------------------------------------------------------- */
 
 const TranslationProvider: FC<LocaleProviderProps> = ({ children, lang, translations }) => {
-   function translate({ id, fallback }: TranslateProps) {
+   function translate({ id, fallback, values }: TranslateProps) {
       const keys = id?.split(':');
       const messages = translations;
 
@@ -27,7 +28,7 @@ const TranslationProvider: FC<LocaleProviderProps> = ({ children, lang, translat
          return `Missing translation for '${id}'`;
       }
 
-      return translatedMessage;
+      return parseMessage(translatedMessage, values);
    }
 
    useEffect(() => {

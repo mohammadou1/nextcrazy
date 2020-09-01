@@ -1,6 +1,8 @@
 import { languages, defaultLanguage } from '~/translation.json';
 import { Router } from 'next/router';
 
+const langs = Object.keys(languages);
+
 type Payload = {
    [key: string]: string;
 };
@@ -18,7 +20,7 @@ type Payload = {
  **/
 
 export function getLanguagesPaths(payloads?: Payload[]) {
-   if (!payloads) return languages.map(lang => ({ params: { lang } }));
+   if (!payloads) return langs.map(lang => ({ params: { lang } }));
 
    const paths: any[] = [];
 
@@ -26,7 +28,7 @@ export function getLanguagesPaths(payloads?: Payload[]) {
    /* ---------------------- Then injecting passed params ---------------------- */
 
    payloads.forEach(payload =>
-      languages.forEach(lang =>
+      langs.forEach(lang =>
          paths.push({
             params: {
                ...payload,
@@ -69,7 +71,7 @@ export function getPaths(payloads: Payload[]) {
 export function getLang(router: Router) {
    const langQuery = `${router.query.lang}`;
 
-   if (router.query.lang && languages.includes(langQuery)) {
+   if (router.query.lang && langs.includes(langQuery)) {
       return langQuery;
    }
 
@@ -78,7 +80,7 @@ export function getLang(router: Router) {
 
    const possibleLang = router.asPath.split('/')[1];
 
-   if (languages.includes(possibleLang)) {
+   if (langs.includes(possibleLang)) {
       return possibleLang;
    }
 
