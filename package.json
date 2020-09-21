@@ -1,15 +1,12 @@
 {
   "name": "nextcrazy",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "keywords": [
     "nextcrazy",
     "nextjs",
     "boilerplate",
-    "nextjs starter",
-    "nextjs tailwind starter",
-    "nextjs boilerplate",
-    "nextjs-boilerplate",
-    "next.js boilerplate"
+    "tailwind",
+    "nextcrazy-cli"
   ],
   "description": "A Next.js boilerplate with typescript, multilanguages, authentication, tailwind and a CLI",
   "scripts": {
@@ -56,10 +53,5 @@
     "tslint": "^6.1.3",
     "typescript": "^4.0.3"
   },
-  "license": "ISC",
-  "author": {
-    "email": "it.moh.ou@gmail.com",
-    "name": "Mohammad AlOulabi",
-    "url": "https://twitter.com/mhmdou1"
-  }
+  "license": "MIT"
 }
