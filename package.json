@@ -13,7 +13,8 @@
     "dev": "next",
     "production": "env-cmd -f .env.production next build & env-cmd -f .env.production next start",
     "testing": "env-cmd -f .env.testing next build & env-cmd -f .env.testing next start",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "prettier":"prettier --write package.json"
   },
   "dependencies": {
     "axios": "^0.20.0",
