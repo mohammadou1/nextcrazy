@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from 'react';
 import cookie from 'js-cookie';
 import { useRouter } from 'next/router';
-import AuthContext, { ComeBackConfig } from './context';
+import AuthContext, { RedirectConfig, ComeBackConfig } from './context';
 import { useTranslate } from '~/i18n';
 import { languages } from '~/translation.json';
 
@@ -32,7 +32,7 @@ export interface AuthState {
    authenticated: boolean;
    checked: boolean;
    token: string;
-   user: Record<string, unknown> | null;
+   user: any;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -89,7 +89,7 @@ const AuthProvider: FC<AuthProviderProps> = ({ children, ...props }) => {
        **/
       const asLang = redirectAs?.split('/');
 
-      if (asLang && languages.includes(asLang[1])) {
+      if (asLang && Object.keys(languages).includes(asLang[1])) {
          asLang[1] = lang;
          router.replace(redirect ? `${redirect}` : href, redirectAs ? `${asLang.join('/')}` : as);
          return;
@@ -107,11 +107,11 @@ const AuthProvider: FC<AuthProviderProps> = ({ children, ...props }) => {
       router.push(customHref || '/[lang]', customHrefAs || `/${lang}`);
    };
 
-   const updateUser = (user: any) => {
+   const updateUser = <T,>(user: T) => {
       if (data.authenticated) setData({ ...data, user });
    };
 
-   const comebackLogin = (config?: ComeBackConfig) => {
+   const comebackLogin = (config?: RedirectConfig & ComeBackConfig) => {
       const href = `${config?.comebackTo?.href || router.pathname}`;
 
       const hrefAs = `${config?.comebackTo?.as || router.asPath}`;
