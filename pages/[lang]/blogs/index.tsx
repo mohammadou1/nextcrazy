@@ -3,8 +3,7 @@ import { getLanguagesPaths } from '~/utils/translate';
 import { Fragment } from 'react';
 import { NextSeo } from 'next-seo';
 import Axios from '~/utils/axios';
-import { NextLink } from '~/i18n';
-import useTranslate from '../../../i18n/useTranslate';
+import { NextLink, useTranslate } from '~/i18n';
 
 const BlogsPage = ({ blogs }: { blogs: any[] }) => {
    const { translate } = useTranslate();
@@ -20,10 +19,7 @@ const BlogsPage = ({ blogs }: { blogs: any[] }) => {
             <ul className="mt-12">
                {blogs.map((blog: any) => (
                   <li key={blog.id} className="mt-2">
-                     <NextLink
-                        className="hover:underline"
-                        href="/blogs/[slug]"
-                        as={`/blogs/${blog.id}`}>
+                     <NextLink className="hover:underline" href={`/blogs/${blog.id}`}>
                         {blog.title}
                      </NextLink>
                   </li>

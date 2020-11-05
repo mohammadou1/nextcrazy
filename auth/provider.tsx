@@ -7,25 +7,13 @@ import { languages } from '~/translation.json';
 
 export interface AuthProviderProps {
    /** Login page path, (default is /[lang]/login)  */
-   loginPath?: {
-      as?: string;
-      href: string;
-   };
+   loginPath?: string;
    /** After login action is triggered redirects to... (default is /[lang]) */
-   afterLoginTo?: {
-      as?: string;
-      href: string;
-   };
+   afterLoginTo?: string;
    /** After log out action is triggered redirects to... (default is /[lang]) */
-   afterLogoutTo?: {
-      as?: string;
-      href: string;
-   };
+   afterLogoutTo?: string;
    /** If the user try to access a page wrapped by withRedirectOnAuth he will be redirected to.. (default is /[lang]) */
-   onAuthTo?: {
-      as?: string;
-      href: string;
-   };
+   onAuthTo?: string;
 }
 
 export interface AuthState {
@@ -77,34 +65,32 @@ const AuthProvider: FC<AuthProviderProps> = ({ children, ...props }) => {
 
       const sessionRedirect = sessionStorage.getItem('redirect');
 
-      const { redirect, redirectAs } = JSON.parse(sessionRedirect || '{}');
+      const { redirect } = JSON.parse(sessionRedirect || '{}');
 
       if (sessionRedirect) sessionStorage.removeItem('redirect');
 
-      const href = props.afterLoginTo?.href || '/[lang]';
-      const as = props.afterLoginTo?.as || props.afterLoginTo?.href || `/${lang}`;
+      const href = props.afterLoginTo || `/${lang}`;
 
       /**
        * Taking language from redirect url and match it with current user language (in case he changed the language)
        **/
-      const asLang = redirectAs?.split('/');
+      const asLang = redirect?.split('/');
 
       if (asLang && Object.keys(languages).includes(asLang[1])) {
          asLang[1] = lang;
-         router.replace(redirect ? `${redirect}` : href, redirectAs ? `${asLang.join('/')}` : as);
+         router.replace(redirect ? `${redirect}` : href);
          return;
       }
-      router.replace(redirect ? `${redirect}` : href, redirectAs ? `${redirectAs}` : as);
+      router.replace(redirect ? `${redirect}` : href);
    };
 
    const logout = () => {
       cookie.remove('token', { path: '/' });
 
       setData({ ...data, token: '', user: null, authenticated: false });
-      const customHref = props?.afterLogoutTo?.href;
-      const customHrefAs = props?.afterLogoutTo?.as || props?.afterLogoutTo?.href;
+      const customHref = props?.afterLogoutTo;
 
-      router.push(customHref || '/[lang]', customHrefAs || `/${lang}`);
+      router.push(customHref || `/${lang}`);
    };
 
    const updateUser = <T,>(user: T) => {
@@ -112,24 +98,13 @@ const AuthProvider: FC<AuthProviderProps> = ({ children, ...props }) => {
    };
 
    const comebackLogin = (config?: RedirectConfig & ComeBackConfig) => {
-      const href = `${config?.comebackTo?.href || router.pathname}`;
+      const href = `${config?.comebackTo || router.asPath}`;
 
-      const hrefAs = `${config?.comebackTo?.as || router.asPath}`;
+      sessionStorage.setItem('redirect', JSON.stringify({ redirect: href }));
 
-      const redirect = {
-         redirectAs: hrefAs,
-         redirect: href,
-      };
+      const customHref = config?.redirectTo || props.loginPath || `/${lang}/login`;
 
-      sessionStorage.setItem('redirect', JSON.stringify(redirect));
-
-      const customHref = props.loginPath?.href || '/[lang]/login';
-      const customHrefAs = props.loginPath?.as || props.loginPath?.href || `/${lang}/login`;
-
-      router.replace(
-         config?.redirectTo?.href || customHref,
-         config?.redirectTo?.as || customHrefAs
-      );
+      router.push(customHref);
    };
 
    return (

@@ -3,11 +3,11 @@ import { AuthProviderProps } from './provider';
 
 export type RedirectConfig = {
    /** Where should the user be redirected to ? (default is /[lang]/login).*/
-   redirectTo?: { href: string; as: string };
+   redirectTo?: string;
 };
 export type ComeBackConfig = {
-   /** Where should the user be redirected to afer login success ? (default is /[lang]/login).*/
-   comebackTo?: { href: string; as: string };
+   /** Where should the user be redirected to afer login success ?*/
+   comebackTo?: string;
 };
 export type AuthContextProps<T = any> = {
    /**

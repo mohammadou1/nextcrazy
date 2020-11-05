@@ -1,7 +1,9 @@
 import { FC, useEffect } from 'react';
-import TranslationContext, { TranslateProps } from './context';
+import TranslationContext, { Directions, TranslateProps } from './context';
+import trans from '~/translation.json';
 import cookie from 'js-cookie';
 import { parseMessage } from './_helpers';
+
 type LocaleProviderProps = {
    lang: string;
    translations: {
@@ -20,7 +22,6 @@ const TranslationProvider: FC<LocaleProviderProps> = ({ children, lang, translat
 
       const translatedMessage = messages?.[keys?.[0]]?.[keys?.[1]];
       if (!translatedMessage && fallback) {
-         console.warn(`Translation for '${id}' not found, using fallback instead.`);
          return fallback;
       }
       if (!translatedMessage && !fallback) {
@@ -40,8 +41,10 @@ const TranslationProvider: FC<LocaleProviderProps> = ({ children, lang, translat
          });
    }, [lang]);
 
+   const dir: Directions = (trans as any).languages[lang];
+
    return (
-      <TranslationContext.Provider value={{ lang, translate }}>
+      <TranslationContext.Provider value={{ lang, translate, dir }}>
          {children}
       </TranslationContext.Provider>
    );

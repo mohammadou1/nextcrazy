@@ -13,7 +13,6 @@ interface NavLinkProps extends LinkProps {
 const NextLink: React.FC<NavLinkProps> = ({
    className = '',
    href,
-   as: hrefAs,
    activeClassName = '',
    title,
    children,
@@ -23,6 +22,7 @@ const NextLink: React.FC<NavLinkProps> = ({
 }) => {
    const { lang } = useTranslate();
    const router = useRouter();
+
    if (exact && activeClassName) {
       if (router.asPath === `/${lang}${href}`) {
          className += ` ${activeClassName}`;
@@ -32,16 +32,17 @@ const NextLink: React.FC<NavLinkProps> = ({
          className += ` ${activeClassName}`;
       }
    }
-   if (hrefAs) {
-      hrefAs = `/${lang}${hrefAs}`;
-   } else {
-      hrefAs = `/${lang}${href}`;
-   }
-   href = `/[lang]${href}`;
+
+   href = `/${lang}${href}`;
 
    return (
-      <Link href={href} as={hrefAs} {...rest} prefetch={false}>
-         <a onClick={onClick} title={title} hrefLang={lang} className={className || ''}>
+      <Link href={href} {...rest} prefetch={false}>
+         <a
+            aria-label={title}
+            onClick={onClick}
+            title={title}
+            hrefLang={lang}
+            className={className || ''}>
             {children}
          </a>
       </Link>
