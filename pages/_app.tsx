@@ -49,11 +49,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
             nofollow={false}
             noindex={false}
          />
-         <AuthProvider
-            afterLoginTo={{
-               href: '/[lang]/profile',
-               as: `/${lang}/profile`,
-            }}>
+         <AuthProvider afterLoginTo={`/${lang}/profile`}>
             <Layout>
                <Component {...pageProps} />
             </Layout>

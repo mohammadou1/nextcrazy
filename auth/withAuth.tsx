@@ -25,16 +25,17 @@ export const withRedirectOnAuth = (Component: React.ComponentType) => {
          const token = cookie.get('token');
          if (!token) setAuth(false);
          else {
-            const customHref = settings.onAuthTo?.href || '/[lang]';
-            const customHrefAs = settings.onAuthTo?.as || settings.onAuthTo?.href || `/${lang}`;
+            const customHref = settings.onAuthTo || `/${lang}`;
 
-            router.replace(customHref, customHrefAs);
+            router.replace(customHref);
          }
       }, [lang, router, settings.onAuthTo]);
 
       return authenticated === false && <Component {...props} />;
    };
-
+   Object.keys(Component).forEach(key => {
+      (WithRedirect as any)[key] = (Component as any)[key];
+   });
    return WithRedirect;
 };
 
@@ -51,7 +52,7 @@ type withAuthConfig = {
 /**
  * @description Pages wrapped by this component will redirect the user if he is NOT logged in
  */
-export const withAuth = (Component: React.ComponentType, config?: withAuthConfig) => {
+export function withAuth(Component: React.ComponentType, config?: withAuthConfig) {
    const WithAuth = (props: any) => {
       const [authenticated, setAuth] = useState<LoggedState>('checking');
       const router = useRouter();
@@ -63,29 +64,23 @@ export const withAuth = (Component: React.ComponentType, config?: withAuthConfig
          if (token) setAuth(true);
          else {
             if (config?.comeback) {
-               const href = router.pathname;
-               const hrefAs = router.asPath;
+               const href = router.asPath;
 
                const redirect = {
-                  redirectAs: hrefAs,
                   redirect: href,
                };
                sessionStorage.setItem('redirect', JSON.stringify(redirect));
             }
 
-            const customHref = settings.loginPath?.href || '/[lang]/login';
-            const customHrefAs =
-               settings.loginPath?.as || settings.loginPath?.href || `/${lang}/login`;
-
-            router.replace(
-               config?.redirectTo?.href || customHref,
-               config?.redirectTo?.as || customHrefAs
-            );
+            const customHref = settings.loginPath || `/${lang}/login`;
+            router.replace(config?.redirectTo || customHref);
          }
       }, [lang, router, settings.loginPath]);
 
       return authenticated === true && <Component {...props} />;
    };
-
+   Object.keys(Component).forEach(key => {
+      (WithAuth as any)[key] = (Component as any)[key];
+   });
    return WithAuth;
-};
+}

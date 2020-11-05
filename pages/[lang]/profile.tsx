@@ -1,8 +1,7 @@
 import { GetServerSideProps } from 'next';
 import { Fragment, useEffect } from 'react';
 import { NextSeo } from 'next-seo';
-import useAuth from '../../auth/useAuth';
-import { withAuth } from '../../auth/withAuth';
+import { withAuth, useAuth } from '~/auth';
 
 const HomePage = () => {
    const { user, updateUser } = useAuth();
