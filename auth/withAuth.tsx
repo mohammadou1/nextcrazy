@@ -52,7 +52,7 @@ type withAuthConfig = {
 /**
  * @description Pages wrapped by this component will redirect the user if he is NOT logged in
  */
-export function withAuth(Component: React.ComponentType, config?: withAuthConfig) {
+export function withAuth(Component: React.ComponentType<any>, config?: withAuthConfig) {
    const WithAuth = (props: any) => {
       const [authenticated, setAuth] = useState<LoggedState>('checking');
       const router = useRouter();

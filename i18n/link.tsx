@@ -2,7 +2,7 @@ import Link, { LinkProps } from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslate } from '~/i18n';
 
-interface NavLinkProps extends LinkProps {
+export interface NextLinkProps extends LinkProps {
    className?: string;
    activeClassName?: string;
    title?: string;
@@ -10,7 +10,7 @@ interface NavLinkProps extends LinkProps {
    onClick?: any;
 }
 
-const NextLink: React.FC<NavLinkProps> = ({
+const NextLink: React.FC<NextLinkProps> = ({
    className = '',
    href,
    activeClassName = '',

@@ -1,4 +1,5 @@
 export function parseMessage(message: string, values: Record<string, string> = {}) {
+   if (typeof message !== 'string') return message;
    const regex = /\{{(.*?)\}}/g;
    const matches = message.match(regex);
 
