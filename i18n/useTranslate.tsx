@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import TranslationContext from './context';
+import TranslationContext, { ITranslationContext } from './context';
 
 export default function useTranslate() {
-   return useContext(TranslationContext);
+   return useContext<ITranslationContext>(TranslationContext);
 }

@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import AuthContext from './context';
+import AuthContext, { AuthContextProps } from './context';
 
-export default function useAuth() {
-   return useContext(AuthContext);
+export default function useAuth<T = any>() {
+   return useContext<AuthContextProps<T>>(AuthContext);
 }

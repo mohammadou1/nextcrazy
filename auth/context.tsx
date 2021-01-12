@@ -17,7 +17,7 @@ export type AuthContextProps<T = any> = {
     * @param {object} Initial user object
       if false, it will use "NEXT_PUBLIC_TOKEN_COOKIES_AGE" then
     */
-   login: (token: string, rememberMe?: boolean, user?: Record<string, unknown>) => any;
+   login: (token: string, rememberMe?: boolean, user?: T) => any;
    /** This will just logout the user and remove the token */
    logout: () => void;
    /** If you use it to store the user, then you will be able to access user object using useAuth hook */

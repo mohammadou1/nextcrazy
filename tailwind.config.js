@@ -1,6 +1,10 @@
 module.exports = {
    future: {
       removeDeprecatedGapUtilities: true,
+      purgeLayersByDefault: true,
+   },
+   experimental: {
+      applyComplexClasses: true,
    },
    purge: {
       content: ['./components/**/*.{js,ts,jsx,tsx}', './pages/**/*.{js,ts,jsx,tsx}'],
