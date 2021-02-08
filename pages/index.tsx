@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 import ssCookies from 'next-cookies';
-import { defaultLanguage } from '~/translation.json';
+import { defaultLanguage, languages } from '~/translation.json';
 
 /**************************************************************
  *
@@ -18,8 +18,13 @@ const IndexPage = () => {
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
    const { lang } = ssCookies(ctx);
+   const aceeptLanguages = ctx.req.headers['accept-language']?.split(',');
+   const highestPriority = String(aceeptLanguages?.[1]?.split(';')[0]);
+   const fallback = Object.keys(languages).includes(highestPriority)
+      ? highestPriority
+      : defaultLanguage;
 
-   ctx?.res?.writeHead(302, { Location: `/${lang || defaultLanguage}` });
+   ctx?.res?.writeHead(302, { Location: `/${lang || fallback}` });
    ctx?.res?.end();
    return {
       props: {},
