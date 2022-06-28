@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import cookie from 'js-cookie';
 import { useRouter } from 'next/router';
 import { useTranslate } from '~/i18n';
-import useAuth from './useAuth';
+import useAuth from './use-auth';
 type LoggedState = 'checking' | true | false;
 
 /* -------------------------------------------------------------------------- */
