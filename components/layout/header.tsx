@@ -1,9 +1,9 @@
 import { NextLink, Translate } from '~/i18n';
 import styles from './styles/header.module.css';
 import { useState } from 'react';
-import LangSwitcher from '../shared/langSwitcher';
+import LangSwitcher from '../common/lang-switcher';
 import useTranslate from '../../i18n/useTranslate';
-import useAuth from '../../auth/useAuth';
+import { useAuth } from '../../auth';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 
@@ -24,11 +24,11 @@ const Header = () => {
    return (
       <header>
          <nav className="bg-gray-800">
-            <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+            <div className="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
                <div className="relative flex items-center justify-between h-16">
-                  <div className="absolute inset-y-0 ltr:left-0 rtl:right-0 flex items-center sm:hidden">
+                  <div className="absolute inset-y-0 flex items-center ltr:left-0 rtl:right-0 sm:hidden">
                      <button
-                        className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out"
+                        className="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white"
                         aria-label="Main menu"
                         onClick={toggle}
                         aria-expanded={isOpen ? 'true' : 'false'}>
@@ -59,7 +59,7 @@ const Header = () => {
                         </svg>
                      </button>
                   </div>
-                  <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+                  <div className="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
                      <div className="flex-shrink-0">
                         <NextLink href="">
                            <span className="text-xl text-white">NextJS Boiler</span>
@@ -100,7 +100,7 @@ const Header = () => {
                         </div>
                      </div>
                   </div>
-                  <div className="absolute inset-y-0 rtl:left-0 ltr:right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                  <div className="absolute inset-y-0 flex items-center pr-2 rtl:left-0 ltr:right-0 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                      {!authenticated ? (
                         <NextLink href="/login" className="btn btn-primary">
                            <Translate id="common:login" />
@@ -111,7 +111,7 @@ const Header = () => {
                         </button>
                      )}
                   </div>
-                  <div className="mx-2  hidden sm:flex">
+                  <div className="hidden mx-2 sm:flex">
                      {lang !== 'ar' && (
                         <LangSwitcher className={styles['navlink']} href="/ar" text="العربية" />
                      )}
@@ -155,7 +155,7 @@ const Header = () => {
                         <Translate id="common:profile" />
                      </NextLink>
                   )}
-                  <div className="h-1 border-t border-white mt-2"></div>
+                  <div className="h-1 mt-2 border-t border-white"></div>
                   <div>
                      {lang !== 'ar' && (
                         <LangSwitcher
