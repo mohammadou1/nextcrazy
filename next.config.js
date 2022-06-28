@@ -6,22 +6,12 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 module.exports = withBundleAnalyzer({
    generateBuildId: () => nextBuildId({ dir: __dirname, describe: true }),
    images: {
-      domains: [
-         'source.unsplash.com',
-         'images.unsplash.com',
-         'test.halayalla.com',
-         'halayalla.com',
-         'storage.sharek.sa',
-         'app.halayalla.com',
-      ],
+      domains: ['source.unsplash.com', 'images.unsplash.com'],
    },
 
    webpack(config) {
       config.module.rules.push({
          test: /\.svg$/,
-         issuer: {
-            test: /\.(js|ts)x?$/,
-         },
          use: [
             {
                loader: '@svgr/webpack',
@@ -31,7 +21,6 @@ module.exports = withBundleAnalyzer({
             },
          ],
       });
-
       return config;
    },
 });
